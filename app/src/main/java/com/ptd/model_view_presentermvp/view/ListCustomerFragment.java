@@ -57,14 +57,8 @@ public class ListCustomerFragment extends Fragment {
 
         decorItemRecyclerView();
 
-        // get data from Fragment --> send to Presenter for processing
-        if (mUser != null) {
-            mShowListPresenter = new ShowListPresenter(getActivity(), mUser, rvShowData);
-            mShowListPresenter.processData();
-        } else {
-            Log.d("test", "onCreateView: null");
-        }
-        
+        sendDataToPresenter();
+
         return view;
     }
 
@@ -74,5 +68,15 @@ public class ListCustomerFragment extends Fragment {
 
         rvShowData.setLayoutManager(linearLayoutManager);
         rvShowData.addItemDecoration(dividerItemDecoration);
+    }
+
+    private void sendDataToPresenter() {
+        // get data from Fragment --> send to Presenter for processing
+        if (mUser != null) {
+            mShowListPresenter = new ShowListPresenter(getActivity(), mUser, rvShowData);
+            mShowListPresenter.processData();
+        } else {
+            Log.d("test", "onCreateView: null");
+        }
     }
 }
